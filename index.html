@@ -1,247 +1,302 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Flores con cielo y nubes</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
-        *,
-        *::after,
-        *::before {
-          padding: 0;
-          margin: 0;
-          box-sizing: border-box;
-        }
-        body {
-          width: 100vw;
-          height: 100vh;
-          min-height: 100vh;
-          overflow: hidden;
-          position: relative;
-          font-family: 'Poppins',cursive;
-        }
-        /* Fondo cielo azul degradado */
-        .sky-bg {
-          position: fixed;
-          width: 100vw;
-          height: 100vh;
-          top: 0;
-          left: 0;
-          z-index: 0;
-          background: linear-gradient(to top, #aeefff 0%, #e0f7fa 100%);
-        }
-        /* Nubes animadas */
-        .cloud {
-          position: absolute;
-          background: #fff;
-          border-radius: 50%;
-          opacity: 0.8;
-          width: 120px;
-          height: 60px;
-          top: 10%;
-          left: -200px;
-          animation: cloudmove 40s linear infinite;
-          z-index: 1;
-        }
-        .cloud2 {
-          width: 180px;
-          height: 80px;
-          top: 25%;
-          left: -300px;
-          animation-duration: 60s;
-          animation-delay: 10s;
-        }
-        .cloud3 {
-          width: 100px;
-          height: 50px;
-          top: 50%;
-          left: -150px;
-          animation-duration: 50s;
-          animation-delay: 20s;
-        }
-        @keyframes cloudmove {
-          0% { left: -200px; }
-          100% { left: 110vw; }
-        }
-        /* --- FLORES: tu mismo CSS, solo lo esencial --- */
-        .flowers {
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 90vw;
-          min-height: 70vh;
-          z-index: 2;
-        }
-        .flower {
-          position: absolute;
-          bottom: 10vmin;
-          transform-origin: bottom center;
-          z-index: 10;
-        }
-        .flower--1 { left: 10%; transform: rotate(-10deg); animation: moving-flower-1 4s linear infinite; }
-        .flower--2 { left: 25%; transform: rotate(10deg); animation: moving-flower-2 4s linear infinite; }
-        .flower--3 { left: 40%; transform: rotate(-5deg); animation: moving-flower-3 4s linear infinite; }
-        .flower--4 { left: 55%; transform: rotate(8deg); animation: moving-flower-1 4s linear infinite; }
-        .flower--5 { left: 70%; transform: rotate(-12deg); animation: moving-flower-2 4s linear infinite; }
-        .flower--6 { left: 85%; transform: rotate(6deg); animation: moving-flower-3 4s linear infinite; }
-        .flower--7 { left: 50%; transform: rotate(0deg); animation: moving-flower-1 4s linear infinite; }
-        @keyframes moving-flower-1 {
-          0%,100% { transform: rotate(2deg);}
-          50% { transform: rotate(-2deg);}
-        }
-        @keyframes moving-flower-2 {
-          0%,100% { transform: rotate(18deg);}
-          50% { transform: rotate(14deg);}
-        }
-        @keyframes moving-flower-3 {
-          0%,100% { transform: rotate(-18deg);}
-          50% { transform: rotate(-20deg) rotateY(-10deg);}
-        }
-        .flower__leafs {
-          position: relative;
-          animation: blooming-flower 2s backwards;
-        }
-        @keyframes blooming-flower {
-          0% { transform: scale(0);}
-        }
-        .flower__leaf {
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          width: 8vmin;
-          height: 11vmin;
-          border-radius: 51% 49% 47% 53%/44% 45% 55% 69%;
-          background-color: #fddd25;
-          transform-origin: bottom center;
-          opacity: 0.9;
-          box-shadow: inset 0 0 2vmin rgba(255,255,255,0.5);
-        }
-        .flower__leaf--1 { transform: translate(-10%, 1%) rotateY(40deg) rotateX(-50deg);}
-        .flower__leaf--2 { transform: translate(-50%, -4%) rotateX(40deg);}
-        .flower__leaf--3 { transform: translate(-90%, 0%) rotateY(45deg) rotateX(50deg);}
-        .flower__leaf--4 {
-          width: 8vmin; height: 8vmin;
-          transform-origin: bottom left;
-          border-radius: 4vmin 10vmin 4vmin 4vmin;
-          transform: translate(0%, 18%) rotateX(70deg) rotate(-43deg);
-          background-color: #7c6901;
-          z-index: 1; opacity: 0.8;
-        }
-        .flower__white-circle {
-          position: absolute;
-          left: -3.5vmin;
-          top: -3vmin;
-          width: 9vmin;
-          height: 4vmin;
-          border-radius: 50%;
-          background-color: #fff;
-        }
-        .flower__white-circle::after {
-          content: "";
-          position: absolute;
-          left: 50%;
-          top: 45%;
-          transform: translate(-50%, -50%);
-          width: 60%;
-          height: 60%;
-          border-radius: inherit;
-          background: #fffde7;
-          opacity: 0.5;
-        }
-        .flower__line {
-          height: 55vmin;
-          width: 1.5vmin;
-          background-image: linear-gradient(
-              to left,
-              rgba(0, 0, 0, 0.2),
-              transparent,
-              rgba(255, 255, 255, 0.2)
-            ),
-            linear-gradient(to top, transparent 10%, #14757a, #39c6d6);
-          box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
-          animation: grow-flower-tree 4s backwards;
-        }
-        @keyframes grow-flower-tree {
-          0% { height: 0; border-radius: 1vmin;}
-        }
-      </style>
+  <meta charset="UTF-8">
+  <title>Ramo de flores con cielo y nubes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Poppins', cursive;
+      background: linear-gradient(to top, #aeefff 0%, #e0f7fa 100%);
+      position: relative;
+    }
+    /* Nubes realistas */
+    .cloud {
+      position: absolute;
+      z-index: 1;
+      opacity: 0.8;
+      animation: cloudmove 60s linear infinite;
+    }
+    .cloud svg {
+      display: block;
+    }
+    /* Varias nubes con diferentes posiciones, tamaños y velocidades */
+    .cloud1 { top: 8vh; left: -200px; width: 180px; animation-duration: 60s; }
+    .cloud2 { top: 18vh; left: -300px; width: 220px; animation-duration: 80s; animation-delay: 10s;}
+    .cloud3 { top: 30vh; left: -150px; width: 120px; animation-duration: 50s; animation-delay: 20s;}
+    .cloud4 { top: 50vh; left: -100px; width: 160px; animation-duration: 70s; animation-delay: 30s;}
+    .cloud5 { top: 65vh; left: -250px; width: 200px; animation-duration: 90s; animation-delay: 40s;}
+    .cloud6 { top: 40vh; left: -180px; width: 140px; animation-duration: 55s; animation-delay: 15s;}
+    .cloud7 { top: 20vh; left: -100px; width: 100px; animation-duration: 65s; animation-delay: 25s;}
+    @keyframes cloudmove {
+      0% { left: -250px; }
+      100% { left: 110vw; }
+    }
+    /* Flores */
+    .flowers {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40vw;
+      min-width: 320px;
+      max-width: 600px;
+      height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .bouquet {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .flower {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform-origin: bottom center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+      /* Para animación de crecimiento */
+      animation: grow-flower 2s ease-out backwards;
+    }
+    /* Posiciones para que salgan del mismo punto pero se abran como ramo */
+    .flower.f1 { transform: translate(-50%,0) rotate(-25deg); z-index: 3; left: 44%; animation-delay: 0.2s;}
+    .flower.f2 { transform: translate(-50%,0) rotate(-12deg); z-index: 4; left: 47%; animation-delay: 0.4s;}
+    .flower.f3 { transform: translate(-50%,0) rotate(0deg);   z-index: 5; left: 50%; animation-delay: 0.6s;}
+    .flower.f4 { transform: translate(-50%,0) rotate(12deg);  z-index: 4; left: 53%; animation-delay: 0.8s;}
+    .flower.f5 { transform: translate(-50%,0) rotate(25deg);  z-index: 3; left: 56%; animation-delay: 1s;}
+    @keyframes grow-flower {
+      0% { transform: scaleY(0) translate(-50%,0) rotate(0deg);}
+      100% {}
+    }
+    /* Tallo */
+    .stem {
+      width: 1.2vmin;
+      height: 32vh;
+      background: linear-gradient(to bottom, #4caf50 60%, #357a38 100%);
+      border-radius: 4px;
+      margin-bottom: -2vh;
+      z-index: 1;
+      position: relative;
+    }
+    /* Hojas */
+    .leaves {
+      position: absolute;
+      bottom: 18vh;
+      left: 50%;
+      width: 7vw;
+      min-width: 60px;
+      max-width: 100px;
+      height: 8vh;
+      transform: translateX(-50%);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .leaf {
+      position: absolute;
+      width: 50px;
+      height: 30px;
+      background: linear-gradient(135deg, #43a047 60%, #a5d6a7 100%);
+      border-radius: 60% 80% 60% 80%/80% 60% 80% 60%;
+      opacity: 0.85;
+    }
+    .leaf.l1 { left: 0; top: 10px; transform: rotate(-30deg) scaleX(-1);}
+    .leaf.l2 { right: 0; top: 0; transform: rotate(30deg);}
+    /* Flor (pétalos) */
+    .petals {
+      position: relative;
+      width: 7vmin;
+      height: 7vmin;
+      margin-bottom: -1.5vmin;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .petal {
+      position: absolute;
+      width: 2.2vmin;
+      height: 4.2vmin;
+      border-radius: 60% 60% 60% 60%;
+      opacity: 0.95;
+      left: 50%;
+      top: 50%;
+      transform-origin: bottom center;
+    }
+    /* Colores de pétalos */
+    .petal.orange { background: linear-gradient(160deg, #ff9800 80%, #ffcc80 100%);}
+    .petal.pink   { background: linear-gradient(160deg, #e040fb 80%, #ffb6f9 100%);}
+    /* Centro de la flor */
+    .center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 2.2vmin;
+      height: 2.2vmin;
+      background: radial-gradient(circle, #fffde7 60%, #fbc02d 100%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      box-shadow: 0 0 0.5vmin #fffde7;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      .flowers { width: 95vw; min-width: 0; }
+      .leaves { min-width: 40px; }
+      .leaf { width: 30px; height: 18px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="sky-bg"></div>
-  <div class="cloud"></div>
-  <div class="cloud cloud2"></div>
-  <div class="cloud cloud3"></div>
+  <!-- Nubes SVG realistas -->
+  <div class="cloud cloud1">
+    <svg width="180" height="70"><ellipse cx="60" cy="40" rx="50" ry="25" fill="#fff"/><ellipse cx="100" cy="35" rx="40" ry="20" fill="#fff"/><ellipse cx="130" cy="45" rx="30" ry="18" fill="#fff"/></svg>
+  </div>
+  <div class="cloud cloud2">
+    <svg width="220" height="80"><ellipse cx="80" cy="50" rx="60" ry="28" fill="#fff"/><ellipse cx="140" cy="40" rx="50" ry="22" fill="#fff"/><ellipse cx="180" cy="60" rx="35" ry="15" fill="#fff"/></svg>
+  </div>
+  <div class="cloud cloud3">
+    <svg width="120" height="50"><ellipse cx="40" cy="30" rx="30" ry="15" fill="#fff"/><ellipse cx="80" cy="25" rx="25" ry="12" fill="#fff"/></svg>
+  </div>
+  <div class="cloud cloud4">
+    <svg width="160" height="60"><ellipse cx="60" cy="40" rx="40" ry="18" fill="#fff"/><ellipse cx="110" cy="35" rx="35" ry="15" fill="#fff"/></svg>
+  </div>
+  <div class="cloud cloud5">
+    <svg width="200" height="70"><ellipse cx="70" cy="50" rx="50" ry="20" fill="#fff"/><ellipse cx="130" cy="40" rx="40" ry="18" fill="#fff"/><ellipse cx="170" cy="60" rx="30" ry="12" fill="#fff"/></svg>
+  </div>
+  <div class="cloud cloud6">
+    <svg width="140" height="50"><ellipse cx="50" cy="30" rx="30" ry="12" fill="#fff"/><ellipse cx="90" cy="25" rx="25" ry="10" fill="#fff"/></svg>
+  </div>
+  <div class="cloud cloud7">
+    <svg width="100" height="40"><ellipse cx="30" cy="20" rx="20" ry="8" fill="#fff"/><ellipse cx="70" cy="15" rx="18" ry="7" fill="#fff"/></svg>
+  </div>
+  <!-- Flores tipo ramo -->
   <div class="flowers">
-    <div class="flower flower--1">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle"></div>
+    <div class="bouquet">
+      <!-- Flor 1: naranja -->
+      <div class="flower f1">
+        <div class="leaves">
+          <div class="leaf l1"></div>
+          <div class="leaf l2"></div>
+        </div>
+        <div class="stem"></div>
+        <div class="petals">
+          <!-- 10 pétalos naranja -->
+          <div class="petal orange" style="transform: rotate(0deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(36deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(72deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(108deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(144deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(180deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(216deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(252deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(288deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(324deg) translate(-50%, -90%);"></div>
+          <div class="center"></div>
+        </div>
       </div>
-      <div class="flower__line"></div>
-    </div>
-    <div class="flower flower--2">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle"></div>
+      <!-- Flor 2: rosa -->
+      <div class="flower f2">
+        <div class="leaves">
+          <div class="leaf l1"></div>
+          <div class="leaf l2"></div>
+        </div>
+        <div class="stem"></div>
+        <div class="petals">
+          <!-- 10 pétalos rosa -->
+          <div class="petal pink" style="transform: rotate(0deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(36deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(72deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(108deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(144deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(180deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(216deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(252deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(288deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(324deg) translate(-50%, -90%);"></div>
+          <div class="center"></div>
+        </div>
       </div>
-      <div class="flower__line"></div>
-    </div>
-    <div class="flower flower--3">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle"></div>
+      <!-- Flor 3: naranja -->
+      <div class="flower f3">
+        <div class="leaves">
+          <div class="leaf l1"></div>
+          <div class="leaf l2"></div>
+        </div>
+        <div class="stem"></div>
+        <div class="petals">
+          <!-- 10 pétalos naranja -->
+          <div class="petal orange" style="transform: rotate(0deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(36deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(72deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(108deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(144deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(180deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(216deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(252deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(288deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(324deg) translate(-50%, -90%);"></div>
+          <div class="center"></div>
+        </div>
       </div>
-      <div class="flower__line"></div>
-    </div>
-    <div class="flower flower--4">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle"></div>
+      <!-- Flor 4: rosa -->
+      <div class="flower f4">
+        <div class="leaves">
+          <div class="leaf l1"></div>
+          <div class="leaf l2"></div>
+        </div>
+        <div class="stem"></div>
+        <div class="petals">
+          <!-- 10 pétalos rosa -->
+          <div class="petal pink" style="transform: rotate(0deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(36deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(72deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(108deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(144deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(180deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(216deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(252deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(288deg) translate(-50%, -90%);"></div>
+          <div class="petal pink" style="transform: rotate(324deg) translate(-50%, -90%);"></div>
+          <div class="center"></div>
+        </div>
       </div>
-      <div class="flower__line"></div>
-    </div>
-    <div class="flower flower--5">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle"></div>
+      <!-- Flor 5: naranja -->
+      <div class="flower f5">
+        <div class="leaves">
+          <div class="leaf l1"></div>
+          <div class="leaf l2"></div>
+        </div>
+        <div class="stem"></div>
+        <div class="petals">
+          <!-- 10 pétalos naranja -->
+          <div class="petal orange" style="transform: rotate(0deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(36deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(72deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(108deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(144deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(180deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(216deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(252deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(288deg) translate(-50%, -90%);"></div>
+          <div class="petal orange" style="transform: rotate(324deg) translate(-50%, -90%);"></div>
+          <div class="center"></div>
+        </div>
       </div>
-      <div class="flower__line"></div>
-    </div>
-    <div class="flower flower--6">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle"></div>
-      </div>
-      <div class="flower__line"></div>
-    </div>
-    <div class="flower flower--7">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle"></div>
-      </div>
-      <div class="flower__line"></div>
     </div>
   </div>
 </body>
