@@ -20,7 +20,6 @@
           position: relative;
           font-family: 'Poppins',cursive;
         }
-        /* Fondo cielo azul degradado */
         .sky-bg {
           position: fixed;
           width: 100vw;
@@ -30,235 +29,176 @@
           z-index: 0;
           background: linear-gradient(to top, #aeefff 0%, #e0f7fa 100%);
         }
-        /* Nubes animadas y variadas */
-        .cloud, .cloud4, .cloud5, .cloud6, .cloud7 {
+        /* Nubes SVG realistas */
+        .cloud-svg {
           position: absolute;
-          background: #fff;
-          border-radius: 50%;
-          opacity: 0.8;
           z-index: 1;
+          opacity: 0.8;
+          animation: cloudmove 60s linear infinite;
         }
-        .cloud { width: 120px; height: 60px; top: 10%; left: -200px; animation: cloudmove 40s linear infinite; }
-        .cloud2 { width: 180px; height: 80px; top: 25%; left: -300px; animation: cloudmove2 60s linear infinite; animation-delay: 10s;}
-        .cloud3 { width: 100px; height: 50px; top: 50%; left: -150px; animation: cloudmove3 50s linear infinite; animation-delay: 20s;}
-        .cloud4 { width: 90px; height: 40px; top: 35%; left: -100px; animation: cloudmove4 55s linear infinite; animation-delay: 15s;}
-        .cloud5 { width: 140px; height: 60px; top: 60%; left: -180px; animation: cloudmove5 70s linear infinite; animation-delay: 25s;}
-        .cloud6 { width: 70px; height: 30px; top: 20%; left: -80px; animation: cloudmove6 65s linear infinite; animation-delay: 5s;}
-        .cloud7 { width: 110px; height: 50px; top: 70%; left: -120px; animation: cloudmove7 80s linear infinite; animation-delay: 30s;}
+        .cloud1 { top: 8vh; left: -200px; width: 180px; animation-duration: 60s; }
+        .cloud2 { top: 18vh; left: -300px; width: 220px; animation-duration: 80s; animation-delay: 10s;}
+        .cloud3 { top: 30vh; left: -150px; width: 120px; animation-duration: 50s; animation-delay: 20s;}
+        .cloud4 { top: 50vh; left: -100px; width: 160px; animation-duration: 70s; animation-delay: 30s;}
+        .cloud5 { top: 65vh; left: -250px; width: 200px; animation-duration: 90s; animation-delay: 40s;}
         @keyframes cloudmove {
-          0% { left: -200px; }
+          0% { left: -250px; }
           100% { left: 110vw; }
         }
-        @keyframes cloudmove2 {
-          0% { left: -300px; }
-          100% { left: 110vw; }
-        }
-        @keyframes cloudmove3 {
-          0% { left: -150px; }
-          100% { left: 110vw; }
-        }
-        @keyframes cloudmove4 {
-          0% { left: -100px; }
-          100% { left: 110vw; }
-        }
-        @keyframes cloudmove5 {
-          0% { left: -180px; }
-          100% { left: 110vw; }
-        }
-        @keyframes cloudmove6 {
-          0% { left: -80px; }
-          100% { left: 110vw; }
-        }
-        @keyframes cloudmove7 {
-          0% { left: -120px; }
-          100% { left: 110vw; }
-        }
-        /* --- FLORES: tu mismo CSS, solo lo esencial --- */
+        /* Flores */
         .flowers {
           position: absolute;
           bottom: 0;
           left: 50%;
           transform: translateX(-50%);
           width: 60vw;
-          min-height: 70vh;
+          min-width: 320px;
+          max-width: 600px;
+          height: 80vh;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
           z-index: 2;
+          pointer-events: none;
+        }
+        .bouquet {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
         }
         .flower {
           position: absolute;
-          bottom: 10vmin;
-          transform-origin: bottom center;
-          z-index: 10;
-        }
-        /* Más juntas y del mismo punto */
-        .flower--1 { left: 38%; transform: rotate(-10deg); animation: moving-flower-1 4s linear infinite; }
-        .flower--2 { left: 42%; transform: rotate(10deg); animation: moving-flower-2 4s linear infinite; }
-        .flower--3 { left: 46%; transform: rotate(-5deg); animation: moving-flower-3 4s linear infinite; }
-        .flower--4 { left: 50%; transform: rotate(8deg); animation: moving-flower-1 4s linear infinite; }
-        .flower--5 { left: 54%; transform: rotate(-12deg); animation: moving-flower-2 4s linear infinite; }
-        .flower--6 { left: 58%; transform: rotate(6deg); animation: moving-flower-3 4s linear infinite; }
-        .flower--7 { left: 62%; transform: rotate(0deg); animation: moving-flower-1 4s linear infinite; }
-        @keyframes moving-flower-1 {
-          0%,100% { transform: rotate(2deg);}
-          50% { transform: rotate(-2deg);}
-        }
-        @keyframes moving-flower-2 {
-          0%,100% { transform: rotate(18deg);}
-          50% { transform: rotate(14deg);}
-        }
-        @keyframes moving-flower-3 {
-          0%,100% { transform: rotate(-18deg);}
-          50% { transform: rotate(-20deg) rotateY(-10deg);}
-        }
-        .flower__leafs {
-          position: relative;
-          animation: blooming-flower 2s backwards;
-        }
-        @keyframes blooming-flower {
-          0% { transform: scale(0);}
-        }
-        .flower__leaf {
-          position: absolute;
           bottom: 0;
           left: 50%;
-          width: 8vmin;
-          height: 11vmin;
-          border-radius: 51% 49% 47% 53%/44% 45% 55% 69%;
-          background-color: #fddd25;
           transform-origin: bottom center;
-          opacity: 0.9;
-          box-shadow: inset 0 0 2vmin rgba(255,255,255,0.5);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          pointer-events: none;
+          animation: grow-flower 2s ease-out backwards;
         }
-        .flower__leaf--1 { transform: translate(-10%, 1%) rotateY(40deg) rotateX(-50deg);}
-        .flower__leaf--2 { transform: translate(-50%, -4%) rotateX(40deg);}
-        .flower__leaf--3 { transform: translate(-90%, 0%) rotateY(45deg) rotateX(50deg);}
-        .flower__leaf--4 {
-          width: 8vmin; height: 8vmin;
-          transform-origin: bottom left;
-          border-radius: 4vmin 10vmin 4vmin 4vmin;
-          transform: translate(0%, 18%) rotateX(70deg) rotate(-43deg);
-          background-color: #7c6901;
-          z-index: 1; opacity: 0.8;
-        }
-        /* Cambia el color de la flor */
-        .flower__white-circle {
-          position: absolute;
-          left: -3.5vmin;
-          top: -3vmin;
-          width: 9vmin;
-          height: 4vmin;
-          border-radius: 50%;
-          background-color: var(--flor-color, #fff);
-          box-shadow: 0 0 1vmin #fff8;
-        }
-        .flower__white-circle::after {
-          content: "";
-          position: absolute;
-          left: 50%;
-          top: 45%;
-          transform: translate(-50%, -50%);
-          width: 60%;
-          height: 60%;
-          border-radius: inherit;
-          background: #fffde7;
-          opacity: 0.5;
-        }
-        .flower__line {
-          height: 55vmin;
-          width: 1.5vmin;
-          background-image: linear-gradient(
-              to left,
-              rgba(0, 0, 0, 0.2),
-              transparent,
-              rgba(255, 255, 255, 0.2)
-            ),
-            linear-gradient(to top, transparent 10%, #14757a, #39c6d6);
-          box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
-          animation: grow-flower-tree 4s backwards;
-        }
-        @keyframes grow-flower-tree {
-          0% { height: 0; border-radius: 1vmin;}
+        .flower.f1 { transform: translate(-50%,0) rotate(-20deg); z-index: 3; left: 44%; animation-delay: 0.2s;}
+        .flower.f2 { transform: translate(-50%,0) rotate(-10deg); z-index: 4; left: 47%; animation-delay: 0.4s;}
+        .flower.f3 { transform: translate(-50%,0) rotate(0deg);   z-index: 5; left: 50%; animation-delay: 0.6s;}
+        .flower.f4 { transform: translate(-50%,0) rotate(10deg);  z-index: 4; left: 53%; animation-delay: 0.8s;}
+        .flower.f5 { transform: translate(-50%,0) rotate(20deg);  z-index: 3; left: 56%; animation-delay: 1s;}
+        @keyframes grow-flower {
+          0% { transform: scaleY(0) translate(-50%,0) rotate(0deg);}
+          100% {}
         }
       </style>
 </head>
 <body>
   <div class="sky-bg"></div>
-  <div class="cloud"></div>
-  <div class="cloud cloud2"></div>
-  <div class="cloud cloud3"></div>
-  <div class="cloud cloud4"></div>
-  <div class="cloud cloud5"></div>
-  <div class="cloud cloud6"></div>
-  <div class="cloud cloud7"></div>
+  <!-- Nubes SVG realistas -->
+  <svg class="cloud-svg cloud1" width="180" height="70" viewBox="0 0 180 70">
+    <ellipse cx="60" cy="40" rx="50" ry="25" fill="#fff"/>
+    <ellipse cx="100" cy="35" rx="40" ry="20" fill="#fff"/>
+    <ellipse cx="130" cy="45" rx="30" ry="18" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud2" width="220" height="80" viewBox="0 0 220 80">
+    <ellipse cx="80" cy="50" rx="60" ry="28" fill="#fff"/>
+    <ellipse cx="140" cy="40" rx="50" ry="22" fill="#fff"/>
+    <ellipse cx="180" cy="60" rx="35" ry="15" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud3" width="120" height="50" viewBox="0 0 120 50">
+    <ellipse cx="40" cy="30" rx="30" ry="15" fill="#fff"/>
+    <ellipse cx="80" cy="25" rx="25" ry="12" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud4" width="160" height="60" viewBox="0 0 160 60">
+    <ellipse cx="60" cy="40" rx="40" ry="18" fill="#fff"/>
+    <ellipse cx="110" cy="35" rx="35" ry="15" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud5" width="200" height="70" viewBox="0 0 200 70">
+    <ellipse cx="70" cy="50" rx="50" ry="20" fill="#fff"/>
+    <ellipse cx="130" cy="40" rx="40" ry="18" fill="#fff"/>
+    <ellipse cx="170" cy="60" rx="30" ry="12" fill="#fff"/>
+  </svg>
+  <!-- Flores tipo ramo -->
   <div class="flowers">
-    <div class="flower flower--1">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle" style="--flor-color: #ffb6f9;"></div>
-      </div>
-      <div class="flower__line"></div>
-    </div>
-    <div class="flower flower--2">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle" style="--flor-color: #ff9800;"></div>
-      </div>
-      <div class="flower__line"></div>
-    </div>
-    <div class="flower flower--3">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle" style="--flor-color: #ffb6f9;"></div>
-      </div>
-      <div class="flower__line"></div>
-    </div>
-    <div class="flower flower--4">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle" style="--flor-color: #ff9800;"></div>
-      </div>
-      <div class="flower__line"></div>
-    </div>
-    <div class="flower flower--5">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle" style="--flor-color: #ffb6f9;"></div>
-      </div>
-      <div class="flower__line"></div>
-    </div>
-    <div class="flower flower--6">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle" style="--flor-color: #ff9800;"></div>
-      </div>
-      <div class="flower__line"></div>
-    </div>
-    <div class="flower flower--7">
-      <div class="flower__leafs">
-        <div class="flower__leaf flower__leaf--1"></div>
-        <div class="flower__leaf flower__leaf--2"></div>
-        <div class="flower__leaf flower__leaf--3"></div>
-        <div class="flower__leaf flower__leaf--4"></div>
-        <div class="flower__white-circle" style="--flor-color: #ffb6f9;"></div>
-      </div>
-      <div class="flower__line"></div>
+    <div class="bouquet">
+      <!-- Flor 1: pétalos naranja -->
+      <svg class="flower f1" width="120" height="260" viewBox="0 0 120 260">
+        <!-- Tallo -->
+        <rect x="57" y="80" width="6" height="120" rx="3" fill="#4caf50"/>
+        <!-- Hojas realistas -->
+        <path d="M60 120 Q40 140 60 160 Q55 140 60 120" fill="#43a047"/>
+        <path d="M60 150 Q80 170 60 190 Q65 170 60 150" fill="#43a047"/>
+        <!-- Pétalos naranja -->
+        <g>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ff9800" transform="rotate(0 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb74d" transform="rotate(30 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ff9800" transform="rotate(60 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb74d" transform="rotate(90 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ff9800" transform="rotate(120 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb74d" transform="rotate(150 60 60)"/>
+        </g>
+        <!-- Centro blanco -->
+        <ellipse cx="60" cy="60" rx="18" ry="18" fill="#fff"/>
+      </svg>
+      <!-- Flor 2: pétalos rosa -->
+      <svg class="flower f2" width="120" height="260" viewBox="0 0 120 260">
+        <rect x="57" y="80" width="6" height="120" rx="3" fill="#4caf50"/>
+        <path d="M60 120 Q40 140 60 160 Q55 140 60 120" fill="#43a047"/>
+        <path d="M60 150 Q80 170 60 190 Q65 170 60 150" fill="#43a047"/>
+        <g>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#e040fb" transform="rotate(0 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb6f9" transform="rotate(30 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#e040fb" transform="rotate(60 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb6f9" transform="rotate(90 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#e040fb" transform="rotate(120 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb6f9" transform="rotate(150 60 60)"/>
+        </g>
+        <ellipse cx="60" cy="60" rx="18" ry="18" fill="#fff"/>
+      </svg>
+      <!-- Flor 3: pétalos naranja -->
+      <svg class="flower f3" width="120" height="260" viewBox="0 0 120 260">
+        <rect x="57" y="80" width="6" height="120" rx="3" fill="#4caf50"/>
+        <path d="M60 120 Q40 140 60 160 Q55 140 60 120" fill="#43a047"/>
+        <path d="M60 150 Q80 170 60 190 Q65 170 60 150" fill="#43a047"/>
+        <g>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ff9800" transform="rotate(0 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb74d" transform="rotate(30 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ff9800" transform="rotate(60 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb74d" transform="rotate(90 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ff9800" transform="rotate(120 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb74d" transform="rotate(150 60 60)"/>
+        </g>
+        <ellipse cx="60" cy="60" rx="18" ry="18" fill="#fff"/>
+      </svg>
+      <!-- Flor 4: pétalos rosa -->
+      <svg class="flower f4" width="120" height="260" viewBox="0 0 120 260">
+        <rect x="57" y="80" width="6" height="120" rx="3" fill="#4caf50"/>
+        <path d="M60 120 Q40 140 60 160 Q55 140 60 120" fill="#43a047"/>
+        <path d="M60 150 Q80 170 60 190 Q65 170 60 150" fill="#43a047"/>
+        <g>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#e040fb" transform="rotate(0 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb6f9" transform="rotate(30 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#e040fb" transform="rotate(60 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb6f9" transform="rotate(90 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#e040fb" transform="rotate(120 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb6f9" transform="rotate(150 60 60)"/>
+        </g>
+        <ellipse cx="60" cy="60" rx="18" ry="18" fill="#fff"/>
+      </svg>
+      <!-- Flor 5: pétalos naranja -->
+      <svg class="flower f5" width="120" height="260" viewBox="0 0 120 260">
+        <rect x="57" y="80" width="6" height="120" rx="3" fill="#4caf50"/>
+        <path d="M60 120 Q40 140 60 160 Q55 140 60 120" fill="#43a047"/>
+        <path d="M60 150 Q80 170 60 190 Q65 170 60 150" fill="#43a047"/>
+        <g>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ff9800" transform="rotate(0 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb74d" transform="rotate(30 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ff9800" transform="rotate(60 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb74d" transform="rotate(90 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ff9800" transform="rotate(120 60 60)"/>
+          <ellipse cx="60" cy="60" rx="40" ry="18" fill="#ffb74d" transform="rotate(150 60 60)"/>
+        </g>
+        <ellipse cx="60" cy="60" rx="18" ry="18" fill="#fff"/>
+      </svg>
     </div>
   </div>
 </body>
