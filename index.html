@@ -21,11 +21,27 @@
           opacity: 0.8;
           animation: cloudmove 60s linear infinite;
         }
+        /* Genera muchas nubes con diferentes clases */
         .cloud1 { top: 8vh; left: -200px; width: 180px; animation-duration: 60s; }
         .cloud2 { top: 18vh; left: -300px; width: 220px; animation-duration: 80s; animation-delay: 10s;}
         .cloud3 { top: 30vh; left: -150px; width: 120px; animation-duration: 50s; animation-delay: 20s;}
         .cloud4 { top: 50vh; left: -100px; width: 160px; animation-duration: 70s; animation-delay: 30s;}
         .cloud5 { top: 65vh; left: -250px; width: 200px; animation-duration: 90s; animation-delay: 40s;}
+        .cloud6 { top: 12vh; left: -180px; width: 100px; animation-duration: 55s; animation-delay: 5s;}
+        .cloud7 { top: 22vh; left: -220px; width: 140px; animation-duration: 75s; animation-delay: 15s;}
+        .cloud8 { top: 38vh; left: -160px; width: 110px; animation-duration: 65s; animation-delay: 25s;}
+        .cloud9 { top: 55vh; left: -120px; width: 130px; animation-duration: 85s; animation-delay: 35s;}
+        .cloud10 { top: 70vh; left: -200px; width: 170px; animation-duration: 95s; animation-delay: 45s;}
+        .cloud11 { top: 5vh; left: -100px; width: 90px; animation-duration: 50s; animation-delay: 12s;}
+        .cloud12 { top: 15vh; left: -150px; width: 120px; animation-duration: 60s; animation-delay: 22s;}
+        .cloud13 { top: 25vh; left: -180px; width: 150px; animation-duration: 70s; animation-delay: 32s;}
+        .cloud14 { top: 35vh; left: -210px; width: 180px; animation-duration: 80s; animation-delay: 42s;}
+        .cloud15 { top: 45vh; left: -240px; width: 210px; animation-duration: 90s; animation-delay: 52s;}
+        .cloud16 { top: 60vh; left: -170px; width: 130px; animation-duration: 100s; animation-delay: 62s;}
+        .cloud17 { top: 75vh; left: -110px; width: 100px; animation-duration: 110s; animation-delay: 72s;}
+        .cloud18 { top: 80vh; left: -90px; width: 80px; animation-duration: 120s; animation-delay: 82s;}
+        .cloud19 { top: 60vh; left: -60px; width: 60px; animation-duration: 130s; animation-delay: 92s;}
+        .cloud20 { top: 20vh; left: -50px; width: 50px; animation-duration: 140s; animation-delay: 102s;}
         @keyframes cloudmove {
           0% { left: -250px; }
           100% { left: 110vw; }
@@ -36,8 +52,8 @@
           bottom: 0;
           left: 50%;
           transform: translateX(-50%);
-          width: 90vw;
-          height: 90vh;
+          width: 98vw;
+          height: 98vh;
           display: flex;
           justify-content: center;
           align-items: flex-end;
@@ -62,8 +78,15 @@
           align-items: center;
           pointer-events: none;
           animation: sway 4s ease-in-out infinite;
+          /* Animación de crecimiento */
+          --grow-delay: 0s;
+          animation-name: sway, grow-flower;
+          animation-duration: 4s, 1.5s;
+          animation-timing-function: ease-in-out, cubic-bezier(.5,1.7,.5,1);
+          animation-iteration-count: infinite, 1;
+          animation-fill-mode: forwards, forwards;
+          animation-delay: var(--delay,0s), var(--grow-delay,0s);
         }
-        /* Animación de mecerse */
         @keyframes sway {
           0% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(var(--scale)); }
           20% { transform: translate(-50%,0) rotate(calc(var(--angle) + 4deg)) scaleY(var(--scale)); }
@@ -71,10 +94,14 @@
           80% { transform: translate(-50%,0) rotate(calc(var(--angle) + 2deg)) scaleY(var(--scale)); }
           100% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(var(--scale)); }
         }
+        @keyframes grow-flower {
+          0% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(0);}
+          100% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(var(--scale));}
+        }
     </style>
 </head>
 <body>
-  <!-- Nubes SVG realistas -->
+  <!-- Muchas nubes SVG realistas -->
   <svg class="cloud-svg cloud1" width="180" height="70" viewBox="0 0 180 70">
     <ellipse cx="60" cy="40" rx="50" ry="25" fill="#fff"/>
     <ellipse cx="100" cy="35" rx="40" ry="20" fill="#fff"/>
@@ -98,35 +125,101 @@
     <ellipse cx="130" cy="40" rx="40" ry="18" fill="#fff"/>
     <ellipse cx="170" cy="60" rx="30" ry="12" fill="#fff"/>
   </svg>
+  <svg class="cloud-svg cloud6" width="100" height="40" viewBox="0 0 100 40">
+    <ellipse cx="30" cy="20" rx="20" ry="10" fill="#fff"/>
+    <ellipse cx="70" cy="15" rx="18" ry="8" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud7" width="140" height="60" viewBox="0 0 140 60">
+    <ellipse cx="50" cy="30" rx="30" ry="15" fill="#fff"/>
+    <ellipse cx="90" cy="25" rx="25" ry="12" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud8" width="110" height="50" viewBox="0 0 110 50">
+    <ellipse cx="40" cy="30" rx="25" ry="10" fill="#fff"/>
+    <ellipse cx="80" cy="25" rx="20" ry="8" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud9" width="130" height="60" viewBox="0 0 130 60">
+    <ellipse cx="50" cy="30" rx="30" ry="12" fill="#fff"/>
+    <ellipse cx="90" cy="25" rx="25" ry="10" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud10" width="170" height="70" viewBox="0 0 170 70">
+    <ellipse cx="60" cy="40" rx="40" ry="18" fill="#fff"/>
+    <ellipse cx="120" cy="35" rx="35" ry="15" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud11" width="90" height="30" viewBox="0 0 90 30">
+    <ellipse cx="30" cy="15" rx="20" ry="8" fill="#fff"/>
+    <ellipse cx="60" cy="10" rx="18" ry="7" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud12" width="120" height="40" viewBox="0 0 120 40">
+    <ellipse cx="40" cy="20" rx="25" ry="10" fill="#fff"/>
+    <ellipse cx="80" cy="15" rx="20" ry="8" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud13" width="150" height="60" viewBox="0 0 150 60">
+    <ellipse cx="60" cy="30" rx="30" ry="12" fill="#fff"/>
+    <ellipse cx="110" cy="25" rx="25" ry="10" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud14" width="180" height="70" viewBox="0 0 180 70">
+    <ellipse cx="70" cy="40" rx="40" ry="18" fill="#fff"/>
+    <ellipse cx="130" cy="35" rx="35" ry="15" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud15" width="210" height="80" viewBox="0 0 210 80">
+    <ellipse cx="80" cy="50" rx="60" ry="28" fill="#fff"/>
+    <ellipse cx="150" cy="40" rx="50" ry="22" fill="#fff"/>
+    <ellipse cx="190" cy="60" rx="35" ry="15" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud16" width="130" height="50" viewBox="0 0 130 50">
+    <ellipse cx="50" cy="30" rx="30" ry="12" fill="#fff"/>
+    <ellipse cx="90" cy="25" rx="25" ry="10" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud17" width="100" height="40" viewBox="0 0 100 40">
+    <ellipse cx="30" cy="20" rx="20" ry="8" fill="#fff"/>
+    <ellipse cx="70" cy="15" rx="18" ry="7" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud18" width="80" height="30" viewBox="0 0 80 30">
+    <ellipse cx="20" cy="15" rx="15" ry="6" fill="#fff"/>
+    <ellipse cx="60" cy="10" rx="12" ry="5" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud19" width="60" height="20" viewBox="0 0 60 20">
+    <ellipse cx="20" cy="10" rx="10" ry="4" fill="#fff"/>
+    <ellipse cx="40" cy="8" rx="8" ry="3" fill="#fff"/>
+  </svg>
+  <svg class="cloud-svg cloud20" width="50" height="15" viewBox="0 0 50 15">
+    <ellipse cx="15" cy="7" rx="7" ry="3" fill="#fff"/>
+    <ellipse cx="35" cy="5" rx="6" ry="2" fill="#fff"/>
+  </svg>
   <!-- Flores tipo ramo -->
   <div class="flowers">
     <div class="bouquet">
       <script>
-        // 20 flores, alternando naranja y rosa, con centro café, alturas y ángulos variables
+        // 60 flores: 20 normales, 20 más altas, 20 aún más altas
         const colors = [
           ['#ff9800', '#ffb74d'], // naranja
           ['#e040fb', '#ffb6f9']  // rosa
         ];
         let html = '';
-        for(let i=0; i<20; i++) {
-          // Ángulo de abanico (-40 a +40 grados)
-          const angle = -40 + (i * 80/19);
-          // Posición horizontal (44% a 56%)
-          const left = 44 + (i * 12/19);
+        let total = 60;
+        for(let i=0; i<total; i++) {
+          // Ángulo de abanico (-50 a +50 grados)
+          const angle = -50 + (i * 100/(total-1));
+          // Posición horizontal (42% a 58%)
+          const left = 42 + (i * 16/(total-1));
           // Alternar color
           const colorSet = colors[i%2];
-          // Altura variable (tallo más largo o corto)
-          const stemLen = 100 + Math.round(60 * (0.5 + 0.5 * Math.sin(i*0.7)));
+          // Altura variable: 20 normales, 20 más altas, 20 aún más altas
+          let stemLen;
+          if(i<20) stemLen = 100 + Math.round(40 * (0.5 + 0.5 * Math.sin(i*0.7)));
+          else if(i<40) stemLen = 150 + Math.round(40 * (0.5 + 0.5 * Math.sin(i*0.7)));
+          else stemLen = 200 + Math.round(40 * (0.5 + 0.5 * Math.sin(i*0.7)));
           // Animación: cada flor con diferente escala y retardo
           const scale = 0.95 + 0.2*Math.sin(i*1.2);
-          const delay = (i%5)*0.5 + (i%3)*0.2;
+          const delay = (i%10)*0.15 + (i%5)*0.1;
           html += `
           <svg class="flower" style="
             left:${left}%;
             --angle:${angle}deg;
             --scale:${scale};
-            animation-delay:${delay}s;
-          " width="90" height="220" viewBox="0 0 120 220">
+            --delay:${delay}s;
+            --grow-delay:${(i*0.07).toFixed(2)}s;
+          " width="90" height="260" viewBox="0 0 120 260">
             <!-- Tallo -->
             <rect x="57" y="80" width="6" height="${stemLen}" rx="3" fill="#4caf50"/>
             <!-- Hojas realistas -->
