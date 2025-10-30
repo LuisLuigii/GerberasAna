@@ -1,149 +1,180 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Gerberas con cielo y nubes</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      overflow: hidden;
-      background: linear-gradient(to top, #aeefff 0%, #e0f7fa 100%);
-      position: relative;
-    }
-    .sky {
-      position: fixed;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-    }
-    .cloud {
-      position: absolute;
-      background: #fff;
-      border-radius: 50%;
-      opacity: 0.8;
-      width: 120px;
-      height: 60px;
-      top: 10%;
-      left: -200px;
-      animation: cloudmove 40s linear infinite;
-    }
-    .cloud2 {
-      width: 180px;
-      height: 80px;
-      top: 25%;
-      left: -300px;
-      animation-duration: 60s;
-      animation-delay: 10s;
-    }
-    .cloud3 {
-      width: 100px;
-      height: 50px;
-      top: 50%;
-      left: -150px;
-      animation-duration: 50s;
-      animation-delay: 20s;
-    }
-    @keyframes cloudmove {
-      0% { left: -200px; }
-      100% { left: 110vw; }
-    }
-
-    .flowers {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80vw;
-      height: 90vh;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 60px;
-    }
-
-    /* FLORES tipo gerbera (del ejemplo) */
-    .flower {
-      position: relative;
-      width: 12vmin;
-      height: 60vmin;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .flower__line {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 1.5vmin;
-      height: 45vmin;
-      background: linear-gradient(to bottom, #4caf50 60%, #357a38 100%);
-      border-radius: 4px;
-      transform: translateX(-50%);
-      z-index: 1;
-    }
-    .flower__leafs {
-      position: absolute;
-      bottom: 45vmin;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 12vmin;
-      height: 12vmin;
-      z-index: 2;
-    }
-    .flower__leaf {
-      position: absolute;
-      width: 8vmin;
-      height: 11vmin;
-      border-radius: 51% 49% 47% 53%/44% 45% 55% 69%;
-      background-color: #e6f331;
-      opacity: 0.9;
-      box-shadow: inset 0 0 2vmin rgba(255,255,255,0.5);
-    }
-    .flower__leaf--1 { left: 10%; top: 10%; transform: rotate(-20deg);}
-    .flower__leaf--2 { left: 50%; top: 0; transform: translateX(-50%) rotate(20deg);}
-    .flower__leaf--3 { right: 10%; top: 10%; transform: rotate(20deg);}
-    .flower__leaf--4 { left: 25%; bottom: 0; width: 8vmin; height: 8vmin; border-radius: 4vmin 10vmin 4vmin 4vmin; background: #e6f331; opacity: 0.8; }
-
-    .flower__white-circle {
-      position: absolute;
-      left: 1.5vmin;
-      top: 2vmin;
-      width: 9vmin;
-      height: 4vmin;
-      border-radius: 50%;
-      background-color: #fff;
-      z-index: 3;
-    }
-    .flower__white-circle::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 45%;
-      transform: translate(-50%, -50%);
-      width: 60%;
-      height: 60%;
-      border-radius: inherit;
-      background: #fffde7;
-      opacity: 0.5;
-    }
-    /* Puedes personalizar colores para cada flor usando .flower--1, .flower--2, etc. */
-  </style>
+    <meta charset="UTF-8">
+    <title>Flores con cielo y nubes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
+        *,
+        *::after,
+        *::before {
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
+        }
+        body {
+          width: 100vw;
+          height: 100vh;
+          min-height: 100vh;
+          overflow: hidden;
+          position: relative;
+          font-family: 'Poppins',cursive;
+        }
+        /* Fondo cielo azul degradado */
+        .sky-bg {
+          position: fixed;
+          width: 100vw;
+          height: 100vh;
+          top: 0;
+          left: 0;
+          z-index: 0;
+          background: linear-gradient(to top, #aeefff 0%, #e0f7fa 100%);
+        }
+        /* Nubes animadas */
+        .cloud {
+          position: absolute;
+          background: #fff;
+          border-radius: 50%;
+          opacity: 0.8;
+          width: 120px;
+          height: 60px;
+          top: 10%;
+          left: -200px;
+          animation: cloudmove 40s linear infinite;
+          z-index: 1;
+        }
+        .cloud2 {
+          width: 180px;
+          height: 80px;
+          top: 25%;
+          left: -300px;
+          animation-duration: 60s;
+          animation-delay: 10s;
+        }
+        .cloud3 {
+          width: 100px;
+          height: 50px;
+          top: 50%;
+          left: -150px;
+          animation-duration: 50s;
+          animation-delay: 20s;
+        }
+        @keyframes cloudmove {
+          0% { left: -200px; }
+          100% { left: 110vw; }
+        }
+        /* --- FLORES: tu mismo CSS, solo lo esencial --- */
+        .flowers {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 90vw;
+          min-height: 70vh;
+          z-index: 2;
+        }
+        .flower {
+          position: absolute;
+          bottom: 10vmin;
+          transform-origin: bottom center;
+          z-index: 10;
+        }
+        .flower--1 { left: 10%; transform: rotate(-10deg); animation: moving-flower-1 4s linear infinite; }
+        .flower--2 { left: 25%; transform: rotate(10deg); animation: moving-flower-2 4s linear infinite; }
+        .flower--3 { left: 40%; transform: rotate(-5deg); animation: moving-flower-3 4s linear infinite; }
+        .flower--4 { left: 55%; transform: rotate(8deg); animation: moving-flower-1 4s linear infinite; }
+        .flower--5 { left: 70%; transform: rotate(-12deg); animation: moving-flower-2 4s linear infinite; }
+        .flower--6 { left: 85%; transform: rotate(6deg); animation: moving-flower-3 4s linear infinite; }
+        .flower--7 { left: 50%; transform: rotate(0deg); animation: moving-flower-1 4s linear infinite; }
+        @keyframes moving-flower-1 {
+          0%,100% { transform: rotate(2deg);}
+          50% { transform: rotate(-2deg);}
+        }
+        @keyframes moving-flower-2 {
+          0%,100% { transform: rotate(18deg);}
+          50% { transform: rotate(14deg);}
+        }
+        @keyframes moving-flower-3 {
+          0%,100% { transform: rotate(-18deg);}
+          50% { transform: rotate(-20deg) rotateY(-10deg);}
+        }
+        .flower__leafs {
+          position: relative;
+          animation: blooming-flower 2s backwards;
+        }
+        @keyframes blooming-flower {
+          0% { transform: scale(0);}
+        }
+        .flower__leaf {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 8vmin;
+          height: 11vmin;
+          border-radius: 51% 49% 47% 53%/44% 45% 55% 69%;
+          background-color: #fddd25;
+          transform-origin: bottom center;
+          opacity: 0.9;
+          box-shadow: inset 0 0 2vmin rgba(255,255,255,0.5);
+        }
+        .flower__leaf--1 { transform: translate(-10%, 1%) rotateY(40deg) rotateX(-50deg);}
+        .flower__leaf--2 { transform: translate(-50%, -4%) rotateX(40deg);}
+        .flower__leaf--3 { transform: translate(-90%, 0%) rotateY(45deg) rotateX(50deg);}
+        .flower__leaf--4 {
+          width: 8vmin; height: 8vmin;
+          transform-origin: bottom left;
+          border-radius: 4vmin 10vmin 4vmin 4vmin;
+          transform: translate(0%, 18%) rotateX(70deg) rotate(-43deg);
+          background-color: #7c6901;
+          z-index: 1; opacity: 0.8;
+        }
+        .flower__white-circle {
+          position: absolute;
+          left: -3.5vmin;
+          top: -3vmin;
+          width: 9vmin;
+          height: 4vmin;
+          border-radius: 50%;
+          background-color: #fff;
+        }
+        .flower__white-circle::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 45%;
+          transform: translate(-50%, -50%);
+          width: 60%;
+          height: 60%;
+          border-radius: inherit;
+          background: #fffde7;
+          opacity: 0.5;
+        }
+        .flower__line {
+          height: 55vmin;
+          width: 1.5vmin;
+          background-image: linear-gradient(
+              to left,
+              rgba(0, 0, 0, 0.2),
+              transparent,
+              rgba(255, 255, 255, 0.2)
+            ),
+            linear-gradient(to top, transparent 10%, #14757a, #39c6d6);
+          box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+          animation: grow-flower-tree 4s backwards;
+        }
+        @keyframes grow-flower-tree {
+          0% { height: 0; border-radius: 1vmin;}
+        }
+      </style>
 </head>
 <body>
-  <div class="sky">
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-    <div class="cloud cloud3"></div>
-  </div>
+  <div class="sky-bg"></div>
+  <div class="cloud"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
   <div class="flowers">
     <div class="flower flower--1">
-      <div class="flower__leafs flower__leafs--1">
+      <div class="flower__leafs">
         <div class="flower__leaf flower__leaf--1"></div>
         <div class="flower__leaf flower__leaf--2"></div>
         <div class="flower__leaf flower__leaf--3"></div>
@@ -153,7 +184,7 @@
       <div class="flower__line"></div>
     </div>
     <div class="flower flower--2">
-      <div class="flower__leafs flower__leafs--2">
+      <div class="flower__leafs">
         <div class="flower__leaf flower__leaf--1"></div>
         <div class="flower__leaf flower__leaf--2"></div>
         <div class="flower__leaf flower__leaf--3"></div>
@@ -163,7 +194,47 @@
       <div class="flower__line"></div>
     </div>
     <div class="flower flower--3">
-      <div class="flower__leafs flower__leafs--3">
+      <div class="flower__leafs">
+        <div class="flower__leaf flower__leaf--1"></div>
+        <div class="flower__leaf flower__leaf--2"></div>
+        <div class="flower__leaf flower__leaf--3"></div>
+        <div class="flower__leaf flower__leaf--4"></div>
+        <div class="flower__white-circle"></div>
+      </div>
+      <div class="flower__line"></div>
+    </div>
+    <div class="flower flower--4">
+      <div class="flower__leafs">
+        <div class="flower__leaf flower__leaf--1"></div>
+        <div class="flower__leaf flower__leaf--2"></div>
+        <div class="flower__leaf flower__leaf--3"></div>
+        <div class="flower__leaf flower__leaf--4"></div>
+        <div class="flower__white-circle"></div>
+      </div>
+      <div class="flower__line"></div>
+    </div>
+    <div class="flower flower--5">
+      <div class="flower__leafs">
+        <div class="flower__leaf flower__leaf--1"></div>
+        <div class="flower__leaf flower__leaf--2"></div>
+        <div class="flower__leaf flower__leaf--3"></div>
+        <div class="flower__leaf flower__leaf--4"></div>
+        <div class="flower__white-circle"></div>
+      </div>
+      <div class="flower__line"></div>
+    </div>
+    <div class="flower flower--6">
+      <div class="flower__leafs">
+        <div class="flower__leaf flower__leaf--1"></div>
+        <div class="flower__leaf flower__leaf--2"></div>
+        <div class="flower__leaf flower__leaf--3"></div>
+        <div class="flower__leaf flower__leaf--4"></div>
+        <div class="flower__white-circle"></div>
+      </div>
+      <div class="flower__line"></div>
+    </div>
+    <div class="flower flower--7">
+      <div class="flower__leafs">
         <div class="flower__leaf flower__leaf--1"></div>
         <div class="flower__leaf flower__leaf--2"></div>
         <div class="flower__leaf flower__leaf--3"></div>
