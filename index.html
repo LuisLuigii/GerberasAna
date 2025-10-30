@@ -2,31 +2,16 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ramo de flores con cielo y nubes</title>
+    <title>Ramo de flores animado</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
-        *,
-        *::after,
-        *::before {
-          padding: 0;
+        html, body {
+          width: 100vw;
+          height: 100vh;
           margin: 0;
-          box-sizing: border-box;
-        }
-        body {
-          width: 100vw;
-          height: 100vh;
-          min-height: 100vh;
+          padding: 0;
           overflow: hidden;
-          position: relative;
-          font-family: 'Poppins',cursive;
-        }
-        .sky-bg {
-          position: fixed;
-          width: 100vw;
-          height: 100vh;
-          top: 0;
-          left: 0;
-          z-index: 0;
+          font-family: 'Poppins', cursive;
           background: linear-gradient(to top, #aeefff 0%, #e0f7fa 100%);
         }
         /* Nubes SVG realistas */
@@ -76,16 +61,19 @@
           flex-direction: column;
           align-items: center;
           pointer-events: none;
-          animation: grow-flower 2s ease-out backwards;
+          animation: sway 4s ease-in-out infinite;
         }
-        @keyframes grow-flower {
-          0% { transform: scaleY(0) translate(-50%,0) rotate(0deg);}
-          100% {}
+        /* Animación de mecerse */
+        @keyframes sway {
+          0% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(var(--scale)); }
+          20% { transform: translate(-50%,0) rotate(calc(var(--angle) + 4deg)) scaleY(var(--scale)); }
+          50% { transform: translate(-50%,0) rotate(calc(var(--angle) - 4deg)) scaleY(var(--scale)); }
+          80% { transform: translate(-50%,0) rotate(calc(var(--angle) + 2deg)) scaleY(var(--scale)); }
+          100% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(var(--scale)); }
         }
     </style>
 </head>
 <body>
-  <div class="sky-bg"></div>
   <!-- Nubes SVG realistas -->
   <svg class="cloud-svg cloud1" width="180" height="70" viewBox="0 0 180 70">
     <ellipse cx="60" cy="40" rx="50" ry="25" fill="#fff"/>
@@ -113,10 +101,8 @@
   <!-- Flores tipo ramo -->
   <div class="flowers">
     <div class="bouquet">
-      <!-- 20 flores, alternando naranja y rosa, con centro café -->
-      <!-- Distribución en abanico -->
       <script>
-        // Generar 20 flores con distribución en abanico y colores alternos
+        // 20 flores, alternando naranja y rosa, con centro café, alturas y ángulos variables
         const colors = [
           ['#ff9800', '#ffb74d'], // naranja
           ['#e040fb', '#ffb6f9']  // rosa
@@ -129,13 +115,23 @@
           const left = 44 + (i * 12/19);
           // Alternar color
           const colorSet = colors[i%2];
+          // Altura variable (tallo más largo o corto)
+          const stemLen = 100 + Math.round(60 * (0.5 + 0.5 * Math.sin(i*0.7)));
+          // Animación: cada flor con diferente escala y retardo
+          const scale = 0.95 + 0.2*Math.sin(i*1.2);
+          const delay = (i%5)*0.5 + (i%3)*0.2;
           html += `
-          <svg class="flower" style="left:${left}%;transform:translate(-50%,0) rotate(${angle}deg);" width="90" height="200" viewBox="0 0 120 260">
+          <svg class="flower" style="
+            left:${left}%;
+            --angle:${angle}deg;
+            --scale:${scale};
+            animation-delay:${delay}s;
+          " width="90" height="220" viewBox="0 0 120 220">
             <!-- Tallo -->
-            <rect x="57" y="80" width="6" height="120" rx="3" fill="#4caf50"/>
+            <rect x="57" y="80" width="6" height="${stemLen}" rx="3" fill="#4caf50"/>
             <!-- Hojas realistas -->
-            <path d="M60 120 Q40 140 60 160 Q55 140 60 120" fill="#43a047"/>
-            <path d="M60 150 Q80 170 60 190 Q65 170 60 150" fill="#43a047"/>
+            <path d="M60 ${80+stemLen/3} Q40 ${100+stemLen/3} 60 ${120+stemLen/3} Q55 ${100+stemLen/3} 60 ${80+stemLen/3}" fill="#43a047"/>
+            <path d="M60 ${100+stemLen/2} Q80 ${120+stemLen/2} 60 ${140+stemLen/2} Q65 ${120+stemLen/2} 60 ${100+stemLen/2}" fill="#43a047"/>
             <!-- Pétalos -->
             <g>
               <ellipse cx="60" cy="60" rx="40" ry="18" fill="${colorSet[0]}" transform="rotate(0 60 60)"/>
