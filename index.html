@@ -2,139 +2,213 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ramo de Gerberas</title>
+  <title>Ramo de Gerberas con Cielo y Nubes</title>
   <style>
     body {
       margin: 0;
+      padding: 0;
       min-height: 100vh;
+      overflow: hidden;
       background: linear-gradient(to top, #aeefff 0%, #e0f7fa 100%);
+      position: relative;
+    }
+    .sky {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      top: 0;
+      left: 0;
       overflow: hidden;
     }
     .cloud {
       position: absolute;
-      z-index: 1;
-      opacity: 0.7;
-      animation: cloud-move 60s linear infinite;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.8;
+      width: 120px;
+      height: 60px;
+      top: 10%;
+      left: -200px;
+      animation: cloudmove 40s linear infinite;
     }
-    .cloud1 { left: 5vw; top: 8vh; width: 160px; animation-delay: 0s;}
-    .cloud2 { left: 40vw; top: 15vh; width: 220px; animation-delay: 15s;}
-    .cloud3 { left: 20vw; top: 30vh; width: 120px; animation-delay: 30s;}
-    .cloud4 { left: 70vw; top: 20vh; width: 180px; animation-delay: 45s;}
-    @keyframes cloud-move {
-      0% { transform: translateX(0);}
-      100% { transform: translateX(60vw);}
+    .cloud2 {
+      width: 180px;
+      height: 80px;
+      top: 25%;
+      left: -300px;
+      animation-duration: 60s;
+      animation-delay: 10s;
     }
-    .bouquet-container {
+    .cloud3 {
+      width: 100px;
+      height: 50px;
+      top: 50%;
+      left: -150px;
+      animation-duration: 50s;
+      animation-delay: 20s;
+    }
+    @keyframes cloudmove {
+      0% { left: -200px; }
+      100% { left: 110vw; }
+    }
+
+    .flowers {
       position: absolute;
+      bottom: 0;
       left: 50%;
-      top: 60%;
-      transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
+      transform: translateX(-50%);
+      width: 80vw;
+      height: 90vh;
       z-index: 2;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: flex-end;
+      gap: 60px;
     }
-    /* Colores de pétalos para cada flor */
-    .gerbera-red .petal { fill: #e53935 !important; }
-    .gerbera-yellow .petal { fill: #ffeb3b !important; }
-    .gerbera-pink .petal { fill: #ec407a !important; }
-    .gerbera-orange .petal { fill: #ff9800 !important; }
-    /* Opcional: oscurecer el centro para más realismo */
-    .center { fill: #f9d923 !important; }
+
+    /* Flor base */
+    .flower {
+      position: relative;
+      width: 120px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    /* Tallo */
+    .flower__line {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 8px;
+      height: 320px;
+      background: linear-gradient(to bottom, #4caf50 60%, #357a38 100%);
+      border-radius: 4px;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    /* Centro de la flor */
+    .flower__center {
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      width: 44px;
+      height: 44px;
+      background: #ffeb3b;
+      border-radius: 50%;
+      border: 4px solid #b38807;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      box-shadow: 0 2px 8px #b3880780;
+    }
+    /* Pétalos */
+    .flower__petal {
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      width: 24px;
+      height: 80px;
+      background: #e57373;
+      border-radius: 50px 50px 0 0;
+      transform-origin: 50% 100%;
+      z-index: 2;
+      box-shadow: 0 2px 6px #b71c1c40;
+    }
+    /* Variantes de color para cada flor */
+    .flower--1 .flower__petal { background: #e57373; }
+    .flower--2 .flower__petal { background: #f06292; }
+    .flower--3 .flower__petal { background: #ffd54f; }
+    /* Pétalos en círculo */
+    .flower__petal:nth-child(1)  { transform: translate(-50%, -50%) rotate(0deg); }
+    .flower__petal:nth-child(2)  { transform: translate(-50%, -50%) rotate(30deg); }
+    .flower__petal:nth-child(3)  { transform: translate(-50%, -50%) rotate(60deg); }
+    .flower__petal:nth-child(4)  { transform: translate(-50%, -50%) rotate(90deg); }
+    .flower__petal:nth-child(5)  { transform: translate(-50%, -50%) rotate(120deg); }
+    .flower__petal:nth-child(6)  { transform: translate(-50%, -50%) rotate(150deg); }
+    .flower__petal:nth-child(7)  { transform: translate(-50%, -50%) rotate(180deg); }
+    .flower__petal:nth-child(8)  { transform: translate(-50%, -50%) rotate(210deg); }
+    .flower__petal:nth-child(9)  { transform: translate(-50%, -50%) rotate(240deg); }
+    .flower__petal:nth-child(10) { transform: translate(-50%, -50%) rotate(270deg); }
+    .flower__petal:nth-child(11) { transform: translate(-50%, -50%) rotate(300deg); }
+    .flower__petal:nth-child(12) { transform: translate(-50%, -50%) rotate(330deg); }
+
+    /* Opcional: sombra bajo la flor */
+    .flower__shadow {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      width: 60px;
+      height: 16px;
+      background: #0002;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+      filter: blur(2px);
+    }
   </style>
 </head>
 <body>
-  <!-- Nubes SVG animadas -->
-  <svg class="cloud cloud1" viewBox="0 0 200 60">
-    <ellipse cx="50" cy="30" rx="50" ry="25" fill="#fff"/>
-    <ellipse cx="110" cy="35" rx="40" ry="20" fill="#fff"/>
-    <ellipse cx="160" cy="30" rx="30" ry="18" fill="#fff"/>
-  </svg>
-  <svg class="cloud cloud2" viewBox="0 0 220 70">
-    <ellipse cx="60" cy="40" rx="50" ry="25" fill="#fff"/>
-    <ellipse cx="120" cy="35" rx="60" ry="30" fill="#fff"/>
-    <ellipse cx="180" cy="45" rx="40" ry="20" fill="#fff"/>
-  </svg>
-  <svg class="cloud cloud3" viewBox="0 0 120 40">
-    <ellipse cx="30" cy="20" rx="30" ry="15" fill="#fff"/>
-    <ellipse cx="70" cy="18" rx="25" ry="12" fill="#fff"/>
-    <ellipse cx="100" cy="25" rx="15" ry="10" fill="#fff"/>
-  </svg>
-  <svg class="cloud cloud4" viewBox="0 0 180 60">
-    <ellipse cx="50" cy="30" rx="40" ry="18" fill="#fff"/>
-    <ellipse cx="100" cy="35" rx="50" ry="22" fill="#fff"/>
-    <ellipse cx="150" cy="28" rx="30" ry="15" fill="#fff"/>
-  </svg>
-
-  <!-- Ramo de gerberas -->
-  <div class="bouquet-container">
-    <svg width="600" height="600" viewBox="0 0 600 600">
-      <!-- Flor roja (original) -->
-      <g class="gerbera-red" transform="translate(300,400) scale(1)">
-        <!-- Pétalos -->
-        <g>
-          <path class="petal" d="M44.5,70.5 C60,10 140,10 155.5,70.5 Q100,40 44.5,70.5 Z"/>
-          <path class="petal" d="M100,20 Q120,80 180,60 Q120,60 100,20 Z" transform="rotate(30 100 100)"/>
-          <path class="petal" d="M44.5,70.5 C60,10 140,10 155.5,70.5 Q100,40 44.5,70.5 Z" transform="rotate(60 100 100)"/>
-          <path class="petal" d="M100,20 Q120,80 180,60 Q120,60 100,20 Z" transform="rotate(90 100 100)"/>
-          <path class="petal" d="M44.5,70.5 C60,10 140,10 155.5,70.5 Q100,40 44.5,70.5 Z" transform="rotate(120 100 100)"/>
-          <path class="petal" d="M100,20 Q120,80 180,60 Q120,60 100,20 Z" transform="rotate(150 100 100)"/>
-          <path class="petal" d="M44.5,70.5 C60,10 140,10 155.5,70.5 Q100,40 44.5,70.5 Z" transform="rotate(180 100 100)"/>
-          <path class="petal" d="M100,20 Q120,80 180,60 Q120,60 100,20 Z" transform="rotate(210 100 100)"/>
-          <path class="petal" d="M44.5,70.5 C60,10 140,10 155.5,70.5 Q100,40 44.5,70.5 Z" transform="rotate(240 100 100)"/>
-          <path class="petal" d="M100,20 Q120,80 180,60 Q120,60 100,20 Z" transform="rotate(270 100 100)"/>
-          <path class="petal" d="M44.5,70.5 C60,10 140,10 155.5,70.5 Q100,40 44.5,70.5 Z" transform="rotate(300 100 100)"/>
-          <path class="petal" d="M100,20 Q120,80 180,60 Q120,60 100,20 Z" transform="rotate(330 100 100)"/>
-        </g>
-        <!-- Centro -->
-        <circle class="center" cx="100" cy="100" r="38"/>
-        <!-- Tallo y hojas (puedes agregar más detalles si quieres) -->
-        <rect x="95" y="138" width="10" height="80" rx="5" fill="#7cb342"/>
-        <ellipse cx="80" cy="180" rx="18" ry="40" fill="#388e3c" transform="rotate(-30 80 180)"/>
-        <ellipse cx="120" cy="200" rx="18" ry="40" fill="#388e3c" transform="rotate(20 120 200)"/>
-      </g>
-      <!-- Flor amarilla -->
-      <g class="gerbera-yellow" transform="translate(220,470) scale(0.8) rotate(-20)">
-        <use href="#gerbera-flower"/>
-      </g>
-      <!-- Flor rosa -->
-      <g class="gerbera-pink" transform="translate(380,470) scale(0.8) rotate(20)">
-        <use href="#gerbera-flower"/>
-      </g>
-      <!-- Flor naranja -->
-      <g class="gerbera-orange" transform="translate(260,540) scale(0.7) rotate(-10)">
-        <use href="#gerbera-flower"/>
-      </g>
-      <!-- Flor roja extra -->
-      <g class="gerbera-red" transform="translate(340,540) scale(0.7) rotate(10)">
-        <use href="#gerbera-flower"/>
-      </g>
-      <!-- Definición de la flor para duplicar -->
-      <defs>
-        <g id="gerbera-flower">
-          <g>
-            <path class="petal" d="M44.5,70.5 C60,10 140,10 155.5,70.5 Q100,40 44.5,70.5 Z"/>
-            <path class="petal" d="M100,20 Q120,80 180,60 Q120,60 100,20 Z" transform="rotate(30 100 100)"/>
-            <path class="petal" d="M44.5,70.5 C60,10 140,10 155.5,70.5 Q100,40 44.5,70.5 Z" transform="rotate(60 100 100)"/>
-            <path class="petal" d="M100,20 Q120,80 180,60 Q120,60 100,20 Z" transform="rotate(90 100 100)"/>
-            <path class="petal" d="M44.5,70.5 C60,10 140,10 155.5,70.5 Q100,40 44.5,70.5 Z" transform="rotate(120 100 100)"/>
-            <path class="petal" d="M100,20 Q120,80 180,60 Q120,60 100,20 Z" transform="rotate(150 100 100)"/>
-            <path class="petal" d="M44.5,70.5 C60,10 140,10 155.5,70.5 Q100,40 44.5,70.5 Z" transform="rotate(180 100 100)"/>
-            <path class="petal" d="M100,20 Q120,80 180,60 Q120,60 100,20 Z" transform="rotate(210 100 100)"/>
-            <path class="petal" d="M44.5,70.5 C60,10 140,10 155.5,70.5 Q100,40 44.5,70.5 Z" transform="rotate(240 100 100)"/>
-            <path class="petal" d="M100,20 Q120,80 180,60 Q120,60 100,20 Z" transform="rotate(270 100 100)"/>
-            <path class="petal" d="M44.5,70.5 C60,10 140,10 155.5,70.5 Q100,40 44.5,70.5 Z" transform="rotate(300 100 100)"/>
-            <path class="petal" d="M100,20 Q120,80 180,60 Q120,60 100,20 Z" transform="rotate(330 100 100)"/>
-          </g>
-          <circle class="center" cx="100" cy="100" r="38"/>
-          <rect x="95" y="138" width="10" height="80" rx="5" fill="#7cb342"/>
-          <ellipse cx="80" cy="180" rx="18" ry="40" fill="#388e3c" transform="rotate(-30 80 180)"/>
-          <ellipse cx="120" cy="200" rx="18" ry="40" fill="#388e3c" transform="rotate(20 120 200)"/>
-        </g>
-      </defs>
-    </svg>
+  <div class="sky">
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+  </div>
+  <div class="flowers">
+    <!-- Flor 1: roja -->
+    <div class="flower flower--1">
+      <div class="flower__line"></div>
+      <div class="flower__center"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__shadow"></div>
+    </div>
+    <!-- Flor 2: rosa -->
+    <div class="flower flower--2">
+      <div class="flower__line"></div>
+      <div class="flower__center"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__shadow"></div>
+    </div>
+    <!-- Flor 3: amarilla -->
+    <div class="flower flower--3">
+      <div class="flower__line"></div>
+      <div class="flower__center"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__petal"></div>
+      <div class="flower__shadow"></div>
+    </div>
   </div>
 </body>
 </html>
