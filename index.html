@@ -1,134 +1,114 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Ramo de flores animado</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
-    html, body {
-      width: 100vw;
-      height: 100vh;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      font-family: 'Poppins', cursive;
-      background: linear-gradient(to top, #aeefff 0%, #e0f7fa 100%);
-    }
-    body {
-      position: relative;
-    }
-    /* Nubes SVG realistas */
-    .cloud-svg {
-      position: absolute;
-      z-index: 1;
-      opacity: 0.8;
-      pointer-events: none;
-    }
-    /* Nubes fijas y animadas */
-    .cloud-fixed { animation: none !important; }
-    .cloud-anim {
-      animation: cloudmove 60s linear infinite;
-    }
-    /* Muchas nubes, diferentes posiciones y tamaños */
-    /* Fijas */
-    .cloud1 { top: 5vh; left: 10vw; width: 180px;}
-    .cloud2 { top: 15vh; left: 60vw; width: 220px;}
-    .cloud3 { top: 30vh; left: 30vw; width: 120px;}
-    .cloud4 { top: 50vh; left: 70vw; width: 160px;}
-    .cloud5 { top: 65vh; left: 20vw; width: 200px;}
-    .cloud6 { top: 12vh; left: 80vw; width: 100px;}
-    .cloud7 { top: 22vh; left: 5vw; width: 140px;}
-    .cloud8 { top: 38vh; left: 80vw; width: 110px;}
-    .cloud9 { top: 55vh; left: 60vw; width: 130px;}
-    .cloud10 { top: 70vh; left: 80vw; width: 170px;}
-    /* Animadas */
-    .cloud11 { top: 10vh; left: -200px; width: 180px; animation-duration: 60s;}
-    .cloud12 { top: 20vh; left: -300px; width: 220px; animation-duration: 80s; animation-delay: 10s;}
-    .cloud13 { top: 35vh; left: -150px; width: 120px; animation-duration: 50s; animation-delay: 20s;}
-    .cloud14 { top: 55vh; left: -100px; width: 160px; animation-duration: 70s; animation-delay: 30s;}
-    .cloud15 { top: 75vh; left: -250px; width: 200px; animation-duration: 90s; animation-delay: 40s;}
-    @keyframes cloudmove {
-      0% { left: -250px; }
-      100% { left: 110vw; }
-    }
-    /* Flores */
-    .flowers {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -55%);
-      width: 98vw;
-      height: 80vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .bouquet {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-    }
-    .flower {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform-origin: bottom center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      pointer-events: none;
-      animation: sway 4s ease-in-out infinite;
-      --grow-delay: 0s;
-      animation-name: sway, grow-flower;
-      animation-duration: 4s, 1.5s;
-      animation-timing-function: ease-in-out, cubic-bezier(.5,1.7,.5,1);
-      animation-iteration-count: infinite, 1;
-      animation-fill-mode: forwards, forwards;
-      animation-delay: var(--delay,0s), var(--grow-delay,0s);
-    }
-    @keyframes sway {
-      0% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(var(--scale)); }
-      20% { transform: translate(-50%,0) rotate(calc(var(--angle) + 4deg)) scaleY(var(--scale)); }
-      50% { transform: translate(-50%,0) rotate(calc(var(--angle) - 4deg)) scaleY(var(--scale)); }
-      80% { transform: translate(-50%,0) rotate(calc(var(--angle) + 2deg)) scaleY(var(--scale)); }
-      100% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(var(--scale)); }
-    }
-    @keyframes grow-flower {
-      0% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(0);}
-      100% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(var(--scale));}
-    }
-    /* Responsive: flores más grandes y centradas en móvil */
-    @media (max-width: 700px) {
-      .flowers {
-        width: 100vw;
-        height: 90vh;
-        top: 54%;
-        transform: translate(-50%, -60%);
-      }
-      .flower {
-        width: 120px !important;
-        height: 260px !important;
-      }
-    }
-    @media (max-width: 500px) {
-      .flowers {
-        width: 100vw;
-        height: 100vh;
-        top: 60%;
-        transform: translate(-50%, -65%);
-      }
-      .flower {
-        width: 140px !important;
-        height: 300px !important;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Ramo de flores animado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
+        html, body {
+          width: 100vw;
+          height: 100vh;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          font-family: 'Poppins', cursive;
+          background: linear-gradient(to top, #aeefff 0%, #e0f7fa 100%);
+        }
+        /* Nubes SVG realistas */
+        .cloud-svg {
+          position: absolute;
+          z-index: 1;
+          opacity: 0.8;
+          pointer-events: none;
+        }
+        .cloud-fixed { animation: none !important; }
+        .cloud-anim { animation: cloudmove 60s linear infinite; }
+        .cloud1 { top: 5vh; left: 10vw; width: 180px;}
+        .cloud2 { top: 15vh; left: 60vw; width: 220px;}
+        .cloud3 { top: 30vh; left: 30vw; width: 120px;}
+        .cloud4 { top: 50vh; left: 70vw; width: 160px;}
+        .cloud5 { top: 65vh; left: 20vw; width: 200px;}
+        .cloud6 { top: 12vh; left: 80vw; width: 100px;}
+        .cloud7 { top: 22vh; left: 5vw; width: 140px;}
+        .cloud8 { top: 38vh; left: 80vw; width: 110px;}
+        .cloud9 { top: 55vh; left: 60vw; width: 130px;}
+        .cloud10 { top: 70vh; left: 80vw; width: 170px;}
+        .cloud11 { top: 10vh; left: -200px; width: 180px; animation-duration: 60s;}
+        .cloud12 { top: 20vh; left: -300px; width: 220px; animation-duration: 80s; animation-delay: 10s;}
+        .cloud13 { top: 35vh; left: -150px; width: 120px; animation-duration: 50s; animation-delay: 20s;}
+        .cloud14 { top: 55vh; left: -100px; width: 160px; animation-duration: 70s; animation-delay: 30s;}
+        .cloud15 { top: 75vh; left: -250px; width: 200px; animation-duration: 90s; animation-delay: 40s;}
+        @keyframes cloudmove {
+          0% { left: -250px; }
+          100% { left: 110vw; }
+        }
+        /* Flores */
+        .flowers {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -55%);
+          width: 90vw;
+          height: 80vh;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          z-index: 2;
+          pointer-events: none;
+        }
+        .bouquet {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+        }
+        .flower {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform-origin: bottom center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          pointer-events: none;
+          animation: sway 4s ease-in-out infinite;
+        }
+        @keyframes sway {
+          0% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(var(--scale)); }
+          20% { transform: translate(-50%,0) rotate(calc(var(--angle) + 4deg)) scaleY(var(--scale)); }
+          50% { transform: translate(-50%,0) rotate(calc(var(--angle) - 4deg)) scaleY(var(--scale)); }
+          80% { transform: translate(-50%,0) rotate(calc(var(--angle) + 2deg)) scaleY(var(--scale)); }
+          100% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(var(--scale)); }
+        }
+        /* Responsive: flores más grandes y centradas en móvil */
+        @media (max-width: 700px) {
+          .flowers {
+            width: 100vw;
+            height: 90vh;
+            top: 54%;
+            transform: translate(-50%, -60%);
+          }
+          .flower {
+            width: 120px !important;
+            height: 260px !important;
+          }
+        }
+        @media (max-width: 500px) {
+          .flowers {
+            width: 100vw;
+            height: 100vh;
+            top: 60%;
+            transform: translate(-50%, -65%);
+          }
+          .flower {
+            width: 140px !important;
+            height: 300px !important;
+          }
+        }
+    </style>
 </head>
 <body>
   <!-- Nubes fijas -->
@@ -203,38 +183,31 @@
   <div class="flowers">
     <div class="bouquet">
       <script>
-        // 60 flores: 20 normales, 20 más altas, 20 aún más altas
+        // 20 flores, alternando naranja y rosa, con centro café, alturas y ángulos variables
         const colors = [
           ['#ff9800', '#ffb74d'], // naranja
           ['#e040fb', '#ffb6f9']  // rosa
         ];
         let html = '';
-        let total = 60;
-        for(let i=0; i<total; i++) {
-          // Ángulo de abanico (-50 a +50 grados)
-          const angle = -50 + (i * 100/(total-1));
-          // Posición horizontal (42% a 58%)
-          const left = 42 + (i * 16/(total-1));
+        for(let i=0; i<20; i++) {
+          // Ángulo de abanico (-40 a +40 grados)
+          const angle = -40 + (i * 80/19);
+          // Posición horizontal (44% a 56%)
+          const left = 44 + (i * 12/19);
           // Alternar color
           const colorSet = colors[i%2];
-          // Altura variable: 20 normales, 20 más altas, 20 aún más altas
-          let stemLen;
-          if(i<20) stemLen = 100 + Math.round(40 * (0.5 + 0.5 * Math.sin(i*0.7)));
-          else if(i<40) stemLen = 150 + Math.round(40 * (0.5 + 0.5 * Math.sin(i*0.7)));
-          else stemLen = 200 + Math.round(40 * (0.5 + 0.5 * Math.sin(i*0.7)));
+          // Altura variable (tallo más largo o corto)
+          const stemLen = 100 + Math.round(60 * (0.5 + 0.5 * Math.sin(i*0.7)));
           // Animación: cada flor con diferente escala y retardo
           const scale = 0.95 + 0.2*Math.sin(i*1.2);
-          const delay = (i%10)*0.15 + (i%5)*0.1;
+          const delay = (i%5)*0.5 + (i%3)*0.2;
           html += `
           <svg class="flower" style="
             left:${left}%;
             --angle:${angle}deg;
             --scale:${scale};
-            --delay:${delay}s;
-            --grow-delay:${(i*0.07).toFixed(2)}s;
-            width:120px;
-            height:260px;
-          " width="120" height="260" viewBox="0 0 120 260">
+            animation-delay:${delay}s;
+          " width="90" height="220" viewBox="0 0 120 220">
             <!-- Tallo -->
             <rect x="57" y="80" width="6" height="${stemLen}" rx="3" fill="#4caf50"/>
             <!-- Hojas realistas -->
