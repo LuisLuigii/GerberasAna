@@ -15,6 +15,7 @@
           font-family: 'Poppins', cursive;
           background: linear-gradient(to top, #aeefff 0%, #e0f7fa 100%);
         }
+        body { position: relative; }
         /* Nubes SVG realistas */
         .cloud-svg {
           position: absolute;
@@ -43,18 +44,28 @@
           0% { left: -250px; }
           100% { left: 110vw; }
         }
+        /* Montañita */
+        .mountain {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100vw;
+          height: 30vh;
+          z-index: 2;
+          pointer-events: none;
+        }
         /* Flores */
         .flowers {
           position: absolute;
           left: 50%;
-          top: 50%;
-          transform: translate(-50%, -55%);
+          top: 55%;
+          transform: translate(-50%, -60%);
           width: 90vw;
-          height: 80vh;
+          height: 60vh;
           display: flex;
           justify-content: center;
           align-items: flex-end;
-          z-index: 2;
+          z-index: 3;
           pointer-events: none;
         }
         .bouquet {
@@ -83,34 +94,86 @@
           80% { transform: translate(-50%,0) rotate(calc(var(--angle) + 2deg)) scaleY(var(--scale)); }
           100% { transform: translate(-50%,0) rotate(var(--angle)) scaleY(var(--scale)); }
         }
-        /* Responsive: flores más grandes y centradas en móvil */
+        /* Sol dinámico */
+        .sun-container {
+          position: absolute;
+          top: 3vw;
+          right: 4vw;
+          width: 110px;
+          height: 110px;
+          z-index: 10;
+          pointer-events: none;
+        }
+        .sun-rays {
+          transform-box: fill-box;
+          transform-origin: 50% 50%;
+          animation: spin-rays 8s linear infinite;
+        }
+        @keyframes spin-rays {
+          0% { transform: rotate(0deg);}
+          100% { transform: rotate(360deg);}
+        }
+        .sun-core {
+          filter: drop-shadow(0 0 20px #fff17688);
+        }
+        /* Responsive: flores y montaña más grandes y centradas en móvil */
         @media (max-width: 700px) {
           .flowers {
             width: 100vw;
-            height: 90vh;
-            top: 54%;
+            height: 70vh;
+            top: 60%;
             transform: translate(-50%, -60%);
           }
-          .flower {
-            width: 120px !important;
-            height: 260px !important;
+          .mountain {
+            height: 38vh;
+          }
+          .sun-container {
+            width: 80px;
+            height: 80px;
+            top: 2vw;
+            right: 2vw;
           }
         }
         @media (max-width: 500px) {
           .flowers {
             width: 100vw;
-            height: 100vh;
-            top: 60%;
+            height: 80vh;
+            top: 65%;
             transform: translate(-50%, -65%);
           }
-          .flower {
-            width: 140px !important;
-            height: 300px !important;
+          .mountain {
+            height: 45vh;
+          }
+          .sun-container {
+            width: 60px;
+            height: 60px;
+            top: 2vw;
+            right: 2vw;
           }
         }
     </style>
 </head>
 <body>
+  <!-- Sol dinámico -->
+  <div class="sun-container">
+    <svg viewBox="0 0 110 110" width="100%" height="100%">
+      <g class="sun-rays">
+        <g>
+          <rect x="53" y="8" width="4" height="22" rx="2" fill="#ffe082"/>
+          <rect x="53" y="80" width="4" height="22" rx="2" fill="#ffe082"/>
+          <rect x="80" y="53" width="22" height="4" rx="2" fill="#ffe082"/>
+          <rect x="8" y="53" width="22" height="4" rx="2" fill="#ffe082"/>
+        </g>
+        <g transform="rotate(45 55 55)">
+          <rect x="53" y="8" width="4" height="22" rx="2" fill="#ffe082"/>
+          <rect x="53" y="80" width="4" height="22" rx="2" fill="#ffe082"/>
+          <rect x="80" y="53" width="22" height="4" rx="2" fill="#ffe082"/>
+          <rect x="8" y="53" width="22" height="4" rx="2" fill="#ffe082"/>
+        </g>
+      </g>
+      <circle class="sun-core" cx="55" cy="55" r="28" fill="#fff176" stroke="#ffe082" stroke-width="4"/>
+    </svg>
+  </div>
   <!-- Nubes fijas -->
   <svg class="cloud-svg cloud1 cloud-fixed" width="180" height="70" viewBox="0 0 180 70">
     <ellipse cx="60" cy="40" rx="50" ry="25" fill="#fff"/>
@@ -178,6 +241,13 @@
     <ellipse cx="70" cy="50" rx="50" ry="20" fill="#fff"/>
     <ellipse cx="130" cy="40" rx="40" ry="18" fill="#fff"/>
     <ellipse cx="170" cy="60" rx="30" ry="12" fill="#fff"/>
+  </svg>
+  <!-- Montañita verde -->
+  <svg class="mountain" viewBox="0 0 1000 300" width="100%" height="100%">
+    <path d="M0,300 Q150,180 300,250 Q400,280 500,200 Q600,120 700,220 Q850,300 1000,200 L1000,300 Z"
+          fill="#66bb6a"/>
+    <ellipse cx="200" cy="260" rx="60" ry="20" fill="#81c784" opacity="0.7"/>
+    <ellipse cx="800" cy="250" rx="80" ry="25" fill="#388e3c" opacity="0.5"/>
   </svg>
   <!-- Flores tipo ramo -->
   <div class="flowers">
