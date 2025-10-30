@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ramo de Gerberas con Cielo y Nubes</title>
+  <title>Gerberas con cielo y nubes</title>
   <style>
     body {
       margin: 0;
@@ -67,85 +67,72 @@
       gap: 60px;
     }
 
-    /* Flor base */
+    /* FLORES tipo gerbera (del ejemplo) */
     .flower {
       position: relative;
-      width: 120px;
-      height: 400px;
+      width: 12vmin;
+      height: 60vmin;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    /* Tallo */
     .flower__line {
       position: absolute;
       bottom: 0;
       left: 50%;
-      width: 8px;
-      height: 320px;
+      width: 1.5vmin;
+      height: 45vmin;
       background: linear-gradient(to bottom, #4caf50 60%, #357a38 100%);
       border-radius: 4px;
       transform: translateX(-50%);
       z-index: 1;
     }
-    /* Centro de la flor */
-    .flower__center {
+    .flower__leafs {
       position: absolute;
-      top: 60px;
+      bottom: 45vmin;
       left: 50%;
-      width: 44px;
-      height: 44px;
-      background: #ffeb3b;
-      border-radius: 50%;
-      border: 4px solid #b38807;
-      transform: translate(-50%, -50%);
-      z-index: 3;
-      box-shadow: 0 2px 8px #b3880780;
-    }
-    /* Pétalos */
-    .flower__petal {
-      position: absolute;
-      top: 60px;
-      left: 50%;
-      width: 24px;
-      height: 80px;
-      background: #e57373;
-      border-radius: 50px 50px 0 0;
-      transform-origin: 50% 100%;
-      z-index: 2;
-      box-shadow: 0 2px 6px #b71c1c40;
-    }
-    /* Variantes de color para cada flor */
-    .flower--1 .flower__petal { background: #e57373; }
-    .flower--2 .flower__petal { background: #f06292; }
-    .flower--3 .flower__petal { background: #ffd54f; }
-    /* Pétalos en círculo */
-    .flower__petal:nth-child(1)  { transform: translate(-50%, -50%) rotate(0deg); }
-    .flower__petal:nth-child(2)  { transform: translate(-50%, -50%) rotate(30deg); }
-    .flower__petal:nth-child(3)  { transform: translate(-50%, -50%) rotate(60deg); }
-    .flower__petal:nth-child(4)  { transform: translate(-50%, -50%) rotate(90deg); }
-    .flower__petal:nth-child(5)  { transform: translate(-50%, -50%) rotate(120deg); }
-    .flower__petal:nth-child(6)  { transform: translate(-50%, -50%) rotate(150deg); }
-    .flower__petal:nth-child(7)  { transform: translate(-50%, -50%) rotate(180deg); }
-    .flower__petal:nth-child(8)  { transform: translate(-50%, -50%) rotate(210deg); }
-    .flower__petal:nth-child(9)  { transform: translate(-50%, -50%) rotate(240deg); }
-    .flower__petal:nth-child(10) { transform: translate(-50%, -50%) rotate(270deg); }
-    .flower__petal:nth-child(11) { transform: translate(-50%, -50%) rotate(300deg); }
-    .flower__petal:nth-child(12) { transform: translate(-50%, -50%) rotate(330deg); }
-
-    /* Opcional: sombra bajo la flor */
-    .flower__shadow {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      width: 60px;
-      height: 16px;
-      background: #0002;
-      border-radius: 50%;
       transform: translateX(-50%);
-      z-index: 0;
-      filter: blur(2px);
+      width: 12vmin;
+      height: 12vmin;
+      z-index: 2;
     }
+    .flower__leaf {
+      position: absolute;
+      width: 8vmin;
+      height: 11vmin;
+      border-radius: 51% 49% 47% 53%/44% 45% 55% 69%;
+      background-color: #e6f331;
+      opacity: 0.9;
+      box-shadow: inset 0 0 2vmin rgba(255,255,255,0.5);
+    }
+    .flower__leaf--1 { left: 10%; top: 10%; transform: rotate(-20deg);}
+    .flower__leaf--2 { left: 50%; top: 0; transform: translateX(-50%) rotate(20deg);}
+    .flower__leaf--3 { right: 10%; top: 10%; transform: rotate(20deg);}
+    .flower__leaf--4 { left: 25%; bottom: 0; width: 8vmin; height: 8vmin; border-radius: 4vmin 10vmin 4vmin 4vmin; background: #e6f331; opacity: 0.8; }
+
+    .flower__white-circle {
+      position: absolute;
+      left: 1.5vmin;
+      top: 2vmin;
+      width: 9vmin;
+      height: 4vmin;
+      border-radius: 50%;
+      background-color: #fff;
+      z-index: 3;
+    }
+    .flower__white-circle::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 45%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      height: 60%;
+      border-radius: inherit;
+      background: #fffde7;
+      opacity: 0.5;
+    }
+    /* Puedes personalizar colores para cada flor usando .flower--1, .flower--2, etc. */
   </style>
 </head>
 <body>
@@ -155,59 +142,35 @@
     <div class="cloud cloud3"></div>
   </div>
   <div class="flowers">
-    <!-- Flor 1: roja -->
     <div class="flower flower--1">
+      <div class="flower__leafs flower__leafs--1">
+        <div class="flower__leaf flower__leaf--1"></div>
+        <div class="flower__leaf flower__leaf--2"></div>
+        <div class="flower__leaf flower__leaf--3"></div>
+        <div class="flower__leaf flower__leaf--4"></div>
+        <div class="flower__white-circle"></div>
+      </div>
       <div class="flower__line"></div>
-      <div class="flower__center"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__shadow"></div>
     </div>
-    <!-- Flor 2: rosa -->
     <div class="flower flower--2">
+      <div class="flower__leafs flower__leafs--2">
+        <div class="flower__leaf flower__leaf--1"></div>
+        <div class="flower__leaf flower__leaf--2"></div>
+        <div class="flower__leaf flower__leaf--3"></div>
+        <div class="flower__leaf flower__leaf--4"></div>
+        <div class="flower__white-circle"></div>
+      </div>
       <div class="flower__line"></div>
-      <div class="flower__center"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__shadow"></div>
     </div>
-    <!-- Flor 3: amarilla -->
     <div class="flower flower--3">
+      <div class="flower__leafs flower__leafs--3">
+        <div class="flower__leaf flower__leaf--1"></div>
+        <div class="flower__leaf flower__leaf--2"></div>
+        <div class="flower__leaf flower__leaf--3"></div>
+        <div class="flower__leaf flower__leaf--4"></div>
+        <div class="flower__white-circle"></div>
+      </div>
       <div class="flower__line"></div>
-      <div class="flower__center"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__petal"></div>
-      <div class="flower__shadow"></div>
     </div>
   </div>
 </body>
